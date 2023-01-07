@@ -84,7 +84,7 @@ buttons.forEach((button) => { button.addEventListener('click', () => {
             gameResult.appendChild(finalResult);
         }
         else {
-            finalResult.textContent = "Final result: you lost!";
+            finalResult.textContent = "Final result: CPU wins!";
             gameResult.appendChild(finalResult);
         }
 
