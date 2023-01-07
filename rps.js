@@ -48,7 +48,7 @@ function playRound(playerSelection, computerSelection) {
 };
 
 // Connect to buttons.
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('img');
 
 // In the event a button is pressed, play a round.
 buttons.forEach((button) => { button.addEventListener('click', () => {
