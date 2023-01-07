@@ -4,28 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, paper, scissors</title>
+    <title>rock paper scissors</title>
     <link rel="stylesheet" href="style.css"></link>
 </head>
 <body>
     <div class="container">
-        <h1 class="greeting">Rock paper scissors</h1>
-        <h2 class="rules">Best of five rounds</h2>
-        <div id="final-result"></div>
+        <h1 class="greeting">rock paper scissors</h1>
+        <h2 class="rules">best of five rounds</h2>
         <div id="score">
-            <div id="player-score">
-                <div id="player">Player:</div>
-            </div>
-            <div id="cpu-score">
-                <div id="cpu">CPU:</div>
+            <div class="score-container">
+                <div id="player-score">
+                    <div id="player">player</div>
+                </div>
+                <div id="cpu-score">
+                    <div id="cpu">cpu</div>
+                </div>
             </div>
         </div>
-        <div id="round-result"></div>
+        <div id="round-result">&#8205;</div>
         <div id="choices">
             <img id="rock" src="./img/rock.png">
             <img id="paper" src="./img/paper.png">
             <img id="scissors" src="./img/scissors.png">
         </div>
+        <div id="final-result">&#8205;</div>
         <script src="rps.js"></script>
     </div>
 </body>

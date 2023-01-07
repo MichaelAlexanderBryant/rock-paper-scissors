@@ -39,13 +39,6 @@ body {
     align-items: center;
 }
 
-#final-result {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 #score {
     flex: 1;
     display: flex;
@@ -53,11 +46,28 @@ body {
     align-items: center;
 }
 
+.score-container {
+    flex: 1;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    padding: 25px;
+}
+
+#player-score {
+    text-align: center;
+}
+
+#cpu-score {
+    text-align: center;
+}
+
 #round-result {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding:15px;
 }
 
 #choices {
@@ -67,3 +77,11 @@ body {
     align-items: center;
 }
 
+#final-result {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 5px;
+}

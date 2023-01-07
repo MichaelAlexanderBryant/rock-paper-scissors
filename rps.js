@@ -48,7 +48,7 @@ function playRound(playerSelection, computerSelection) {
 };
 
 // Connect to buttons.
-const buttons = document.querySelectorAll('img');
+let buttons = document.querySelectorAll('img');
 
 // In the event a button is pressed, play a round.
 buttons.forEach((button) => { button.addEventListener('click', () => {
@@ -76,28 +76,24 @@ buttons.forEach((button) => { button.addEventListener('click', () => {
     gamesPlayed++;
     if (gamesPlayed == 5) {
         if (playerWins == computerWins) {
-            finalResult.textContent = "Final result: it's a draw!";
+            finalResult.textContent = "draw, refresh browser to play again";
             gameResult.appendChild(finalResult);
         }
         else if (playerWins > computerWins) {
-            finalResult.textContent = "Final result: you won!";
+            finalResult.textContent = "you win, refresh browser to play again";
             gameResult.appendChild(finalResult);
         }
         else {
-            finalResult.textContent = "Final result: CPU wins!";
+            finalResult.textContent = "you lose, refresh browser to play again";
             gameResult.appendChild(finalResult);
         }
 
-        // Disable buttons.
-        document.getElementById("rock").disabled = true;
-        document.getElementById("paper").disabled = true;
-        document.getElementById("scissors").disabled = true;
+        content.textContent = null;
+        roundResult.appendChild(content);
 
-        // Display message to refresh browser to play again.
-        const choices = document.getElementById('choices');
-        const refresh = document.createElement('div');
-        refresh.textContent = "refresh browser to play again";
-        choices.appendChild(refresh)
-    }
+        document.getElementById('rock').style.display ='none';
+        document.getElementById('paper').style.display ='none';
+        document.getElementById('scissors').style.display ='none';
+    };
   });
 });
