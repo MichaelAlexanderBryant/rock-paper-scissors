@@ -1,7 +1,29 @@
+// Initialize wins and games played.
 let playerWins = 0;
 let computerWins = 0;
 let gamesPlayed = 0;
 
+// Initialize player score to zero for UI.
+const player = document.getElementById('player');
+const pScore = document.createElement('div');
+pScore.textContent = "0";
+player.appendChild(pScore)
+
+// Initialize computer score to zero for UI
+const cpu = document.getElementById('cpu');
+const cScore = document.createElement('div');
+cScore.textContent = "0";
+cpu.appendChild(cScore)
+
+// For displaying round result.
+const roundResult = document.querySelector('#round-result');
+const content = document.createElement('div');
+
+// For displaying game result.
+const gameResult = document.querySelector('#final-result');
+const finalResult = document.createElement('div')
+
+// Generate computer choice.
 function getComputerChoice(){
     let choice = Math.floor(Math.random()*3);
     if (choice == 0){
@@ -13,50 +35,69 @@ function getComputerChoice(){
     return "scissors";
 };
 
+// Determine round winner.
 function playRound(playerSelection, computerSelection) {
-
     if (playerSelection == computerSelection){
-        return ["draw", "Draw!"];
+        return ["draw", `both chose ${playerSelection}`];
     }
-
     let youWin = (playerSelection == "paper") && (computerSelection == "rock") || (playerSelection == "rock") && (computerSelection == "scissors") || (playerSelection == "scissors") && (computerSelection == "paper");
-
     if (youWin) {
-        return ["win", `You win: ${playerSelection} beats ${computerSelection}!`];
+        return ["win", `${playerSelection} beats ${computerSelection}`];
     }
-
-    return ["lose", `You lose: ${computerSelection} beats ${playerSelection}!`];
+    return ["lose", `${computerSelection} beats ${playerSelection}`];
 };
 
-// buttons is a node list. It looks and acts much like an array.
+// Connect to buttons.
 const buttons = document.querySelectorAll('button');
 
-// we use the .forEach method to iterate through each button
+// In the event a button is pressed, play a round.
 buttons.forEach((button) => { button.addEventListener('click', () => {
+    // Play round.
     let computerSelection = getComputerChoice();
     let playerSelection = button.id;
     let result = playRound(playerSelection, computerSelection);
-    console.log(result[1]);
+    // If player wins, increment their score and display on UI.
     if (result[0] == "win") {
         playerWins++;
+        pScore.textContent = playerWins.toString();
+        player.appendChild(pScore);
     }
+    // Else if computer wins, increment their score and display on UI.
     else if (result[0] == "lose") {
         computerWins++;
+        cScore.textContent = computerWins.toString();
+        cpu.appendChild(cScore);
     }
+    // Round result to show after each round.
+    content.textContent = result[1];
+    roundResult.appendChild(content);
+
+    // If games played is 5 then display the results of the game.
     gamesPlayed++;
     if (gamesPlayed == 5) {
+        content.textContent = "";
+        roundResult.appendChild(content);
         if (playerWins == computerWins) {
-            console.log("Final result: it's a draw!")
+            finalResult.textContent = "Final result: it's a draw!";
+            gameResult.appendChild(finalResult);
         }
         else if (playerWins > computerWins) {
-            console.log("Final result: you won!")
+            finalResult.textContent = "Final result: you won!";
+            gameResult.appendChild(finalResult);
         }
         else {
-            console.log("Final result: you lost!")
+            finalResult.textContent = "Final result: you lost!";
+            gameResult.appendChild(finalResult);
         }
-        playerWins = 0;
-        computerWins = 0;
-        gamesPlayed = 0;
+
+        // Disable buttons.
+        document.getElementById("rock").disabled = true;
+        document.getElementById("paper").disabled = true;
+        document.getElementById("scissors").disabled = true;
+
+        // Request page reload to play again.
+        content.textContent = "refresh page to play again";
+        roundResult.appendChild(content);
     }
   });
 });
