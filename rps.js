@@ -75,8 +75,6 @@ buttons.forEach((button) => { button.addEventListener('click', () => {
     // If games played is 5 then display the results of the game.
     gamesPlayed++;
     if (gamesPlayed == 5) {
-        content.textContent = "";
-        roundResult.appendChild(content);
         if (playerWins == computerWins) {
             finalResult.textContent = "Final result: it's a draw!";
             gameResult.appendChild(finalResult);
@@ -95,9 +93,11 @@ buttons.forEach((button) => { button.addEventListener('click', () => {
         document.getElementById("paper").disabled = true;
         document.getElementById("scissors").disabled = true;
 
-        // Request page reload to play again.
-        content.textContent = "refresh page to play again";
-        roundResult.appendChild(content);
+        // Display message to refresh browser to play again.
+        const choices = document.getElementById('choices');
+        const refresh = document.createElement('div');
+        refresh.textContent = "refresh browser to play again";
+        choices.appendChild(refresh)
     }
   });
 });
